@@ -1,23 +1,25 @@
 s = "aa" 
 p = "a"
 
-automato = []
+model_automato = []
 
-indice = 1
 i = 0
+indice = 0
 
-#create automato
 while i < len(p):
     character = p[i]
-    automato.append([(character, indice)])
-    indice += 1
+    state = dict()
+
+    if character == "*":
+        print("False")
+    else:
+        indice += 1
+        state.update({character: indice })
+
+    model_automato.append(state)
     i += 1
 
-automato.append([("/n", indice)])
-
-apontador = 0
-
-for character in s:
-    for tupla in automato[apontador]:
-        if character == tupla[0]:
-
+state = 0
+for char in s:
+    if char in model_automato[state]:
+        state = model_automato[state][char]
